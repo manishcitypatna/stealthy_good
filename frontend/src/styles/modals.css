@@ -1,0 +1,144 @@
+/* Modal System with Animated Gradient Backgrounds */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Main Modal Panel with Gradient Background */
+.modal-panel {
+  width: 400px;
+  height: fit-content;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  
+  /* Animated Gradient Background */
+  background: linear-gradient(135deg, #4b0082 0%, #dd7afd 25%, #6500ea 50%, #8b5cf6 75%, #dd7afd 100%);
+  background-size: 200% 200%;
+  background-attachment: fixed;
+  animation: gradientShift 12s ease-in-out infinite;
+  
+  border: none;
+  outline: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scale(1.01);
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+}
+
+/* Modal Title */
+.modal-title {
+  color: white;
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+/* Modal Description */
+.modal-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+  .modal-panel {
+    width: 95%;
+    max-width: 380px;
+    padding: 30px 20px;
+  }
+  
+  .modal-title {
+    font-size: 1rem;
+  }
+  
+  .modal-description {
+    font-size: var(--text-xs);
+  }
+}
